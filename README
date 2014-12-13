@@ -1,2 +1,8 @@
-The Auto scalling template in this repository is derived from this URL http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/example-templates-autoscaling.html
-you can visit the URL for more Information
+
+1) The Auto scalling template in this repository is derived from this URL http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/example-templates-autoscaling.html
+you can visit the URL for more Information.
+
+2)The "VPC_With_PublicIPs_And_DNS.template"  derived from https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/VPC_With_PublicIPs_And_DNS.template.
+
+3) 
+
