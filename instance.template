@@ -23,8 +23,14 @@
       "Description" : "Subnet ID",
       "Type" : "String",
       "Default" : "subnet-18529733",
-      "AllowedValues" : ["subnet-18529733"],
       "ConstraintDescription" : "must be the id of an existing Subnet."
+    },
+   
+    "SecurityGroupID": {
+      "Description" : "SecurityGroup IDs",
+      "Type" : "String",
+      "Default" : "sg-e700f183",
+      "ConstraintDescription" : "must be the id of an existing SG."
     }
   },
 
@@ -35,6 +41,7 @@
             "ImageId" : "ami-10761778",
             "SubnetId" : { "Ref" : "Subnet" },
             "InstanceType" : { "Ref" : "InstanceType" },
+            "SecurityGroupIds" : [ { "Ref" : "SecurityGroupID" } ],
             "KeyName" : { "Ref" : "KeyName" }
          }
       }
