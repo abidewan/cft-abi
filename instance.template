@@ -50,6 +50,7 @@
                 "Fn::Join": [
                   "\n",
                   [
+                  "/bin/systemctl enable puppet.service",
                   "echo \"[main]\" >> /etc/puppet/puppet.conf",
                   "echo \"server = ip-172-31-27-232.ec2.internal\" >> /etc/puppet/puppet.conf",
                   "echo \"environment = development\" >> /etc/puppet/puppet.conf"
