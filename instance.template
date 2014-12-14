@@ -32,6 +32,12 @@
       "Type" : "String",
       "Default" : "172.16.16.16",
       "ConstraintDescription" : "must be a valid private IP in the subnet"
+    },
+    "PuppetMaster": {
+      "Description" : "Puppet Master",
+      "Type" : "String",
+      "Default" : "ip-172-31-27-232.ec2.internal",
+      "ConstraintDescription" : "must be a valid DNS of puppet server"
     }
   },
   
@@ -50,10 +56,23 @@
                 "Fn::Join": [
                   "\n",
                   [
-                  "/bin/systemctl enable puppet.service",
+                  "#!/bin/bash",
                   "echo \"[main]\" >> /etc/puppet/puppet.conf",
-                  "echo \"server = ip-172-31-27-232.ec2.internal\" >> /etc/puppet/puppet.conf",
-                  "echo \"environment = development\" >> /etc/puppet/puppet.conf"
+                  {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "echo \"server =  ",
+                        {
+                          "Ref": "PuppetMaster"
+                        },
+                        "\">> /etc/puppet/puppet.conf"
+                      ]
+                    ]
+                  },
+                  "echo \"environment = development\" >> /etc/puppet/puppet.conf",
+                  "systemctl start puppet.service",
+                  "systemctl enable puppet.service"
                   ]
                 ]            
               }
