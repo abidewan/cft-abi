@@ -71,8 +71,8 @@
                     ]
                   },
                   "echo \"environment = development\" >> /etc/puppet/puppet.conf",
-                  "systemctl start puppet.service",
-                  "systemctl enable puppet.service"
+                  "echo \"runinterval = 5 \" >> /etc/puppet/puppet.conf",
+                  "systemctl start puppet.service"
                   ]
                 ]            
               }
