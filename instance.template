@@ -6,37 +6,38 @@
     "InstanceType" : {
       "Description" : "EC2 instance type",
       "Type" : "String",
-      "Default" : "t2.medium",
+      "Default" : "t2.micro",
       "AllowedValues" : [ "t1.micro", "t2.micro", "t2.small", "t2.medium", "m1.small", "m1.medium", "m1.large", "m1.xlarge"],
       "ConstraintDescription" : "must be a valid EC2 instance type."
     },
     "KeyName": {
       "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instance",
+	  "Default" : "jenkins",
       "Type": "AWS::EC2::KeyPair::KeyName",
       "ConstraintDescription" : "must be the name of an existing EC2 KeyPair."
     },
     "Subnet": {
       "Description" : "Subnet ID",
       "Type" : "String",
-      "Default" : "subnet-18529733",
+      "Default" : "subnet-e0966887",
       "ConstraintDescription" : "must be the id of an existing Subnet."
     },
     "SecurityGroupID": {
       "Description" : "SecurityGroup IDs",
       "Type" : "String",
-      "Default" : "sg-e700f183",
+      "Default" : "sg-bf22d6c4",
       "ConstraintDescription" : "must be the id of an existing SG."
     },
     "PrivateIP": {
       "Description" : "DevPrivateIPs",
       "Type" : "String",
-      "Default" : "172.16.16.16",
+      "Default" : "72.31.26.231",
       "ConstraintDescription" : "must be a valid private IP in the subnet"
     },
     "PuppetMaster": {
       "Description" : "Puppet Master",
       "Type" : "String",
-      "Default" : "ip-172-31-27-232.ec2.internal",
+      "Default" : "ip-172-31-26-235.us-west-2.compute.internal",
       "ConstraintDescription" : "must be a valid DNS of puppet server"
     }
   },
@@ -45,7 +46,7 @@
      "MyEC2Instance" : {
          "Type" : "AWS::EC2::Instance",
          "Properties" : {
-            "ImageId" : "ami-10761778",
+            "ImageId" : "ami-8a72cdea",
             "SubnetId" : { "Ref" : "Subnet" },
             "InstanceType" : { "Ref" : "InstanceType" },
             "SecurityGroupIds" : [ { "Ref" : "SecurityGroupID" } ],
