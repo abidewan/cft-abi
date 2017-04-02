@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
   "Description" : "Ec2 Instance Launch",
@@ -84,3 +85,91 @@
 
 }
 
+=======
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "Ec2 Instance Launch",
+  
+  "Parameters" : {
+    "InstanceType" : {
+      "Description" : "EC2 instance type",
+      "Type" : "String",
+      "Default" : "m1.medium",
+      "AllowedValues" : [ "t1.micro", "t2.micro", "t2.small", "t2.medium", "m1.small", "m1.medium", "m1.large", "m1.xlarge"],
+      "ConstraintDescription" : "enter must be a valid EC2 instance type."
+    },
+    "KeyName": {
+      "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instance",
+	  "Default" : "jenkins",
+      "Type": "AWS::EC2::KeyPair::KeyName",
+      "ConstraintDescription" : "must be the name of an existing EC2 KeyPair."
+    },
+    "Subnet": {
+      "Description" : "Subnet ID",
+      "Type" : "String",
+      "Default" : "subnet-e0966887",
+      "ConstraintDescription" : "must be the id of an existing Subnet."
+    },
+    "SecurityGroupID": {
+      "Description" : "SecurityGroup IDs",
+      "Type" : "String",
+      "Default" : "sg-88ec1df3",
+      "ConstraintDescription" : "must be the id of an existing SG."
+    },
+    "PrivateIP": {
+      "Description" : "DevPrivateIPs",
+      "Type" : "String",
+      "Default" : "172.31.17.178",
+      "ConstraintDescription" : "must be a valid private IP in the subnet"
+    },
+    "PuppetMaster": {
+      "Description" : "Puppet Master",
+      "Type" : "String",
+      "Default" : "ip-172-31-17-168.us-west-2.compute.internal",
+      "ConstraintDescription" : "must be a valid DNS of puppet server"
+    }
+  },
+  
+  "Resources" : {
+     "MyEC2Instance" : {
+         "Type" : "AWS::EC2::Instance",
+         "Properties" : {
+            "ImageId" : "ami-8a72cdea",
+            "SubnetId" : { "Ref" : "Subnet" },
+            "InstanceType" : { "Ref" : "InstanceType" },
+            "SecurityGroupIds" : [ { "Ref" : "SecurityGroupID" } ],
+            "PrivateIpAddress" : { "Ref" : "PrivateIP" },
+            "KeyName" : { "Ref" : "KeyName" },
+            "UserData": {
+              "Fn::Base64": {
+                "Fn::Join": [
+                  "\n",
+                  [
+                  "#!/bin/bash",
+                  "echo \"[main]\" >> /etc/puppet/puppet.conf",
+                  {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "echo \"server =  ",
+                        {
+                          "Ref": "PuppetMaster"
+                        },
+                        "\">> /etc/puppet/puppet.conf"
+                      ]
+                    ]
+                  },
+                  "echo \"environment = development\" >> /etc/puppet/puppet.conf",
+                  "echo \"runinterval = 5 \" >> /etc/puppet/puppet.conf",
+                  "systemctl start puppet.service"
+                  ]
+                ]            
+              }
+            }
+         }
+     }
+  }
+
+}
+
+>>>>>>> 37dd6ac0548da60a4551c9807654778455c2a76d
