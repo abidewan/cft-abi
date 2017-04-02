@@ -32,7 +32,7 @@
       "Description" : "DevPrivateIPs",
       "Type" : "String",
       "Default" : "172.31.17.157",
-      "ConstraintDescription" : "must be a valid private IP in the subnet"
+      "ConstraintDescription" : "enter must be a valid private IP in the subnet"
     },
     "PuppetMaster": {
       "Description" : "Puppet Master",
