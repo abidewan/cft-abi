@@ -25,19 +25,19 @@
     "SecurityGroupID": {
       "Description" : "SecurityGroup IDs",
       "Type" : "String",
-      "Default" : "sg-bf22d6c4",
+      "Default" : "sg-88ec1df3",
       "ConstraintDescription" : "must be the id of an existing SG."
     },
     "PrivateIP": {
       "Description" : "DevPrivateIPs",
       "Type" : "String",
-      "Default" : "72.31.26.231",
+      "Default" : "172.31.17.157",
       "ConstraintDescription" : "must be a valid private IP in the subnet"
     },
     "PuppetMaster": {
       "Description" : "Puppet Master",
       "Type" : "String",
-      "Default" : "ip-172-31-26-235.us-west-2.compute.internal",
+      "Default" : "ip-172-31-17-168.us-west-2.compute.internal",
       "ConstraintDescription" : "must be a valid DNS of puppet server"
     }
   },
