@@ -46,6 +46,24 @@
   "Resources" : {
      "MyEC2Instance" : {
          "Type" : "AWS::EC2::Instance",
+	  "Metadata"  : {
+                "AWS::CloudFormation::Init" : {
+                    "config" : {
+                        "packages" : {
+                            "yum" : {
+                                "java-1.7.0-openjdk" : [
+                                ],
+                                "tomcat6"            : [
+                                ],
+                                "git"                : [
+                                ],
+                                "puppet"      : [
+                                ]
+                                        }
+										} 
+										} 
+										}
+                        },
          "Properties" : {
             "ImageId" : "ami-8a72cdea",
             "SubnetId" : { "Ref" : "Subnet" },
