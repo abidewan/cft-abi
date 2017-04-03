@@ -15,7 +15,7 @@
       "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instance",
 	  "Default" : "jenkins",
       "Type": "AWS::EC2::KeyPair::KeyName",
-      "ConstraintDescription" : "must be the name of an existing EC2 KeyPair."
+      "ConstraintDescription" : "enter must be the name of an existing EC2 KeyPair."
     },
     "Subnet": {
       "Description" : "Subnet ID",
